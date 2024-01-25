@@ -1,15 +1,9 @@
----
-title: "My title"
-subtitle: "My subtitle if needed"
-author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
-date: today
-date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+title: "Toronto's monthly Shelter Capacity Rate in 2020"
+ 
+author: Ismael Gharbi
+# date: 2024-01-23
+abstract: "The political discourse, in Toronto in 2020, centered around the Housing crisis. One of the main talking points, were the overcrowdidness of homeless shelters in Toronto. This was percieved by the increased number of people sleeping on the streets.This paper's analysis may reveal that this pehenoma may be the result of the lack of efficient logistics rather than ressources "
 format: pdf
-number-sections: true
 bibliography: references.bib
 ---
 
@@ -25,33 +19,25 @@ library(palmerpenguins)
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. 
+Github project repository:
 
-The remainder of this paper is structured as follows. @sec-data....
+https://github.com/ismaelgharbi0/Occupancy_rate_shelter_Toronto_2020
+
+Since the start of the Covid pandemic in early 2020, many Torontonians were worried by the overcrowdedness of homeless shelters and the dangerous result of people sleeping on the streets during the Canadian Winter. They argued that an increased occupancy rate helped propogate and not contain the number of infections from the coronavirus in the biggest city in Canada. They argued that it may have contributed to the swift collapse of the Public Health System. Some placed the blame on the Ontario government for cutting spending on increasing shelter capacity for the people in need. Others argued it is a logistics issue and a product of mismanagement of the available ressources.
+
+
+Over the course of the paper, the information on the occupancy and capacityof shelters in Toronto will originate from the Open Data Toronto website, created by the City of Toronto, will be investigated to build an analysis on the housing situation in Toronto. In Section 2: Data will be examined and analysed using a graph and a table. Section 3 will list the references and citations that supported the paper. 
+
+
 
 
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+The data used in this paper is extracted from the Open Data Toronto website , provided by the City of Toronto. We have chosen this datasheet for the purpose of analysis as it lists the monthly occupancy and capacity of each shelter in Toronto in 2020 with clarity. Which helps the mission of finding the problem and may hint to how to fix this situation.
 
-```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
+The raw data contained a long and detailed set of data as it shows for each shelter on a certain day of 2020, the name of the shelter,  the occupancy, the capacity and the occupancy/capacity  percentage ratio. 
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
 
 ```{r}
 #| label: fig-planes
@@ -60,7 +46,7 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 #| warning: false
 #| message: false
 
-analysis_data <- read_csv(here::here("outputs/data/analysis_data.csv"))
+analysis_data <- read_csv(here::here("outputs/data/shelter_occupancy_2020.csv"))
 
 analysis_data |> 
   ggplot(aes(x = width, y = length)) +
@@ -70,150 +56,35 @@ analysis_data |>
        y = "Wing length (mm)")
 ```
 
-Talk way more about it. 
 
+#Comment : Issue with the graph code please proceed
 
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
-```{r}
-#| echo: false
-#| eval: true
-#| warning: false
-#| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("outputs/models/first_model.rds"))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
+We see that the occupancy rate decreases over the months but never reaches 100%, which means there is always room to house homeless people in the shelter but it may demand a logistical solution instead of a material one.
 
 
 
 
-# Discussion
 
-## First discussion point {#sec-first-point}
+# References
+ [@citeR]
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+[@citetidyverse]
 
-## Second discussion point
+[@tellingstories]
 
-## Third discussion point
+[@citeODT]
 
-## Weaknesses and next steps
+[@citeHousingData]
 
-Weaknesses and next steps should also be included.
+[@citeReadR]
 
-\newpage
+[@citeggplot2]
 
-\appendix
-
-# Appendix {-}
-
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
-```
+[@Toronto2023]
 
 
 
-\newpage
+
 
 
 # References
