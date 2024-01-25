@@ -9,14 +9,17 @@
 
 
 #### Workspace setup ####
+install.packages("opendatatoronto")
 
+library(opendatatoronto)
+library(tidyverse)
 
 #### Simulate data ####
 set.seed(500)
 
 # set up the year quarters 
 months <- rep(c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"))
-year <- 2022
+year <- 2020
 
 
 simulated_data <- tibble(
